@@ -1,5 +1,6 @@
 import { FC } from "react";
 import ProjectInfo from "./ProjectInfo";
+import './project.css'
 
 interface Props {
     params: {
@@ -9,7 +10,7 @@ interface Props {
 
 const Project: FC <Props> = ({params}) => {
     return (
-        <div>
+        <div className="main-project-info">
             <ProjectInfo project = {params.project}/>
         </div>
     )

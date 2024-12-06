@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { FC, useState, useEffect, ChangeEvent } from "react";
+import { FC, useState, useEffect, ChangeEvent, useRef } from "react";
 import db from "../../DataBase";
 import './main.css'
 
@@ -10,6 +10,8 @@ const Main: FC = () => {
     const [projectArr, setProjectArr] = useState <any> ([])
     const [sort, setSort] = useState <string> ('')
     const [isProjects, setIsProjects] = useState <string> ('')
+    const refSort = useRef <HTMLParagraphElement> (null)
+    const refSelect = useRef <HTMLSelectElement> (null)
 
     const getData = async () => {
         const getStorage = await localStorage.getItem('projects')
@@ -23,6 +25,12 @@ const Main: FC = () => {
             })
             setProjectArr(newProjects)
             setIsProjects('')
+            if (refSort.current) {
+                refSort.current.className = 'sort'
+            }
+            if (refSelect.current) {
+                refSelect.current.className = 'sort-select'
+            }
         } else {
             setIsProjects('Проектов пока нет')
         }
@@ -51,25 +59,25 @@ const Main: FC = () => {
     return (
         <div className="main-contain">
            <div className="main-el">
-           <Link href={'/createproject'}>+</Link>
+           <Link href={'/createproject'}><button className="to-create">+</button></Link>
            </div>
            <div className="main-el">
-           <ul>
+           <ul style={{listStyle: 'none'}}>
             {projectArr.map((item: any, index: any) => <li key={index}>
-                <div style={{backgroundImage: `url(${item.cover})`}} className="backround-img"><Link href={`${item.name}`}>{item.name}</Link>
+                <div style={{backgroundImage: `url(${item.cover})`}} className="backround-img"><Link href={`${item.name}`} className="to-project">{item.name}</Link>
                 </div></li>)}
         </ul>
         </div>
         <div className="main-el">
-        <p>Сортиртировка</p>
+        <p className="hide" ref={refSort}>Сортировка</p>
         </div>
-        <select onChange={(event: ChangeEvent<HTMLSelectElement>) => setSort(event.target.value)}>
+        <select onChange={(event: ChangeEvent<HTMLSelectElement>) => setSort(event.target.value)} className="hide" ref={refSelect}>
             <option>Сначала новые</option>
             <option>Сначала старые</option>
             <option>Сложности ↓</option>
             <option>Сложности ↑</option>
         </select><br/>
-        {isProjects}
+        <h3 className="is-project">{isProjects}</h3>
         </div>
     )
 }

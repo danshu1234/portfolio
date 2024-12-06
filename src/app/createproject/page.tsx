@@ -1,9 +1,10 @@
 import { FC } from "react";
 import ProjectForm from "./ProjectForm";
+import './create.css'
 
 const Create: FC = () => {
     return (
-        <div>
+        <div className="main-create">
             <ProjectForm/>
         </div>
     )

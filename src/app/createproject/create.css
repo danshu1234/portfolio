@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Jaro:opsz@6..72&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgb(166, 207, 229), rgb(188, 165, 165));
+}
+
+.create-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message {
+    font-size: 90%;
+    color: rgb(203, 46, 46);
+    margin-top: 5px; 
+}
+
+.form-input {
+    margin-top: 20px;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #007BFF; 
+    outline: none; 
+}
+
+.form-input-description {
+    margin-top: 20px;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    width: 100%; 
+    max-height: 150px; 
+    resize: vertical;
+    transition: border-color 0.3s; 
+}
+
+.form-input-description:focus {
+    border-color: #007BFF; 
+    outline: none; 
+}
+
+.add-photo-contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 1px dotted black;
+    border-radius: 10px;
+}
+
+.add-photo-btn{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(34, 179, 34);
+    border-radius: 5px;
+    border: none;
+    color: aliceblue;
+    font-size: 110%;
+    cursor: pointer;
+}
+
+.photos-contain {
+    display: flex;
+    margin-top: 20px;
+    overflow-x: auto; 
+}
+
+.photos {
+    display: flex;
+    white-space: nowrap; 
+    width: auto; 
+}
+
+.photo {
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.form-input {
+    margin-top: 20px;
+    padding: 10px 15px; 
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    width: 100%; 
+    max-height: 100px;
+    max-width: 400px;
+    transition: border-color 0.3s, box-shadow 0.3s; 
+    font-size: 16px;
+    outline: none; 
+}
+
+.form-input:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px 007BFF; 
+}
+
+.form-input:hover {
+    border-color: #327bca; 
+}
+
+.form-input.error {
+    border-color: rgb(203, 46, 46); 
+    box-shadow: 0 0 5px rgba(203, 46, 46, 0.5); 
+}
+
+.select{
+    margin-top: 30px;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.select:focus{
+    border: 2px solid #007BFF; 
+}
+
+.submit-btn{
+    margin-top: 20px;
+    width: 150px;
+    height: 30px;
+    background-color: rgb(17, 163, 17);
+    border: 1px solid aqua;
+    color: aliceblue;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover{
+    scale: 1.05;
+    background-color: rgb(38, 189, 38);
+}
+
+.succes{
+    margin-top: 20px;
+    font-family: "Jaro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    transition: 0.3s;
+    opacity: 0.9;
+}
+
+.photo-err{
+    color: rgb(203, 46, 46);
+    margin-top: 20px;
+}

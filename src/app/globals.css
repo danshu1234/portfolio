@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Jaro:opsz@6..72&family=Parkinsans:wght@300..800&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -9,5 +11,12 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, rgb(166, 207, 229), rgb(188, 165, 165));
-  height: 100vh;
+  min-height: 100vh; 
+}
+
+.head{
+  font-family: "Parkinsans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: rgb(65, 101, 101);
 }

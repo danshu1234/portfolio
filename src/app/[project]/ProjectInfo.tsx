@@ -3,6 +3,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import db from "../../../DataBase";
 import Link from "next/link";
+import './project.css'
 
 interface Props{
     project: string,
@@ -29,7 +30,6 @@ const ProjectInfo: FC<Props> = (props) => {
         const filteredDB = await allPhotos.filter(item => item.project !== props.project)
         await db.images.clear()
         await db.images.bulkAdd(filteredDB)
-        window.location.href = '/'
     }
 
     const validate = () => {
@@ -39,6 +39,7 @@ const ProjectInfo: FC<Props> = (props) => {
                 const paresedStorage = JSON.parse(getProjects)
                 const filteredStorage = paresedStorage.filter((el: any) => el.name !== props.project)
                 localStorage.setItem('projects', JSON.stringify(filteredStorage))
+                window.location.href = '/'
                 deletePhotos()
             }
         } else {
@@ -47,13 +48,13 @@ const ProjectInfo: FC<Props> = (props) => {
     }
 
     if (deleteForm) {
-        remove = <div>
-            <p>Введите название вашего проекта</p>
-            <input onChange={(event: ChangeEvent<HTMLInputElement>) => setInput(event.target.value)}/>
-            {warn}
-            <button onClick={validate}>Удалить</button>
+        remove = <div className="confirm-delete-contain">
+            <p>Название вашего проекта:</p>
+            <input onChange={(event: ChangeEvent<HTMLInputElement>) => setInput(event.target.value)} className="confirm-input"/>
+            <p className="not-confirm">{warn}</p>
+            <button onClick={validate} className="confirm-delete-btn">Удалить</button>
         </div>
-    }
+    }   
 
     const getPhotos = async () => {
         const allPhotos = await db.images.toArray()
@@ -75,13 +76,16 @@ const ProjectInfo: FC<Props> = (props) => {
     }, [])
 
     return (
-        <div>
-            <h2>{project?.name}</h2>
-            <p>{project?.comment}</p>
-            <Link href={project.href} target="_blank">{project.href} </Link>
-            <p>{project?.stars}</p>
-            <ul>{photos.map((item, index) => <li key={index}><img src={item} width={100} height={100}/></li>)}</ul>
-            <button onClick={() => setDeleteForm(true)}>Удалить проект</button>
+        <div className="project-contain">
+            <h2 className="head">{project?.name}</h2>
+            <p className="stars">{project?.stars}</p>
+            <div className="comment-contain">
+            <h3 className="comment">{project?.comment}</h3>
+            </div>
+            <Link href={project.href} target="_blank" className="href"><h3>Репозиторий</h3></Link>
+            <h4>Галерея</h4>
+            <ul className="list-img">{photos.map((item, index) => <li key={index}><img src={item} width={150} height={150} className="img"/></li>)}</ul>
+            <button onClick={() => setDeleteForm(true)} className="delete-btn">Удалить проект</button>
             {remove}
         </div>
     );

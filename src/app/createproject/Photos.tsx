@@ -2,43 +2,54 @@
 
 import { FC } from "react";
 import AddPhoto from "./AddPhoto";
+import './create.css'
 
 interface Props {
     photos: string[],
     setPhotos: Function,
+    findPhoto: string,
+    setFindPhoto: Function,
 }
 
-const Photos: FC <Props> = (props) => {
-
+const Photos: FC<Props> = (props) => {
     let show;
 
     if (props.photos.length === 0) {
         show = <div>
-            <AddPhoto photos = {props.photos} setPhotos = {props.setPhotos}/>
+            <AddPhoto photos={props.photos} setPhotos={props.setPhotos} findPhoto={props.findPhoto} setFindPhoto={props.setFindPhoto} />
         </div>
     } else if (props.photos.length < 5) {
-        show = <div>
-            {props.photos.map((item, index) => <li key={index}>
-                <div>
-                <p onClick={() => {
-                    const filteredArr = props.photos.filter(el => el !== item)  
-                    props.setPhotos(filteredArr)               
-                }}>X</p>
-                <img src={item} width={100} height={100}/>
-                </div></li>)}
-            <AddPhoto photos = {props.photos} setPhotos = {props.setPhotos}/>
-        </div>
+        show = (
+            <div className="photos">
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', overflowX: 'auto' }}>
+                    {props.photos.map((item, index) => (
+                        <li key={index} style={{ marginRight: '20px' }}>
+                            <img src={item} width={100} height={100} className="photo" />
+                        </li>
+                    ))}
+                </ul>
+                <AddPhoto photos={props.photos} setPhotos={props.setPhotos} findPhoto={props.findPhoto} setFindPhoto={props.setFindPhoto} />
+            </div>
+        );
     } else if (props.photos.length >= 5) {
-        show = <div>
-            {props.photos.map((item, index) => <li key={index}><img src={item} width={100} height={100}/></li>)}
-        </div>
+        show = (
+            <div className="photos">
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', overflowX: 'auto' }}>
+                    {props.photos.map((item, index) => (
+                        <li key={index} style={{ marginRight: '20px' }}>
+                            <img src={item} width={100} height={100} className="photo" />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
     }
 
     return (
-        <div>
+        <div className="photos-contain">
             {show}
         </div>
     )
 }
 
-export default Photos
+export default Photos;
